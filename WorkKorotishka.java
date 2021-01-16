@@ -1,3 +1,5 @@
+import jdk.dynalink.NamedOperation;
+
 import java.util.Objects;
 
 public class WorkKorotishka implements DodgeMan, Witness, Stand {
@@ -7,7 +9,7 @@ public class WorkKorotishka implements DodgeMan, Witness, Stand {
     public Time time;
     private Boolean health;
     private Boolean state;
-    private int dodgeSkill;
+    public int dodgeSkill;
     public Mestoimenie mestoimenie;
     public WorkKorotishka(String name, int eye, Time time, Boolean health, Boolean state, int dodgeSkill, Mestoimenie mestoimenie) {
         this.mestoimenie=mestoimenie;
@@ -19,7 +21,11 @@ public class WorkKorotishka implements DodgeMan, Witness, Stand {
         count = Count.getCountWorkKorotishka();
     }
     public int getDodgeSkill() {return dodgeSkill;}
-
+    public void checkName() throws NoNameException {
+        if (getName()=="") {
+            throw new NoNameException(" нет имени");
+        }
+    }
     public void setDodgeSkill(int dodgeSkill) {
         this.dodgeSkill=dodgeSkill;
     }
@@ -59,8 +65,8 @@ public class WorkKorotishka implements DodgeMan, Witness, Stand {
         System.out.println(getName()+" убегает");
     }
     public void zenki() {
-        Fingal oko =new Fingal(this.eye);
-        oko.fingal("большой синяк");
+        Punch punch =new Punch(this.eye);
+        punch.fingal("большой синяк");
 
     }
 

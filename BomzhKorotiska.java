@@ -15,7 +15,11 @@ public class BomzhKorotiska implements Witness, Stand {
     public String getName() {
     return this.name;
     }
-
+    public void checkName() throws NoNameException {
+        if (getName()=="") {
+            throw new NoNameException(" нет имени");
+        }
+    }
     public void setSos(Mestoimenie sos) {
         this.sos = sos;
     }

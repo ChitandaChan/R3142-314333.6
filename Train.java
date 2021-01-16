@@ -7,7 +7,7 @@ public class Train {
     public String getName() {
         return name;
     }
-    public  String arrive(boolean ast, boolean go) throws MemoryExeption {
+    public  String arrive(boolean ast, boolean go)  {
         if ((go==true)&(ast==false)) {
             Bandit Migo = new Bandit() {
                 @Override

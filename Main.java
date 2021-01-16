@@ -1,10 +1,14 @@
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoNameException {
         BomzhKorotiska Neznayka= new BomzhKorotiska("Незнайка", 2, Mestoimenie.ИМЯ);
+        try {Neznayka.checkName();} catch (NoNameException noName) {System.err.println("ERROR"+noName.getMessage());}
         BomzhKorotiska Kozlik= new BomzhKorotiska("Козлик", 2, Mestoimenie.ИМЯ);
+        try {Kozlik.checkName();} catch (NoNameException noName) {System.err.println("ERROR"+noName.getMessage());}
         Balagan balagan= new Balagan ("Закрыт", "Веселый балаган");
-        WorkKorotishka Korotishka= new WorkKorotishka("Коротышка", 1, Time.Вчерашний, true, true, 8, Mestoimenie.ИМЯ);
+        WorkKorotishka Korotishka= new WorkKorotishka("Коротышка", 1, Time.Вчерашний, true, true, 0, Mestoimenie.ИМЯ);
+        try {Korotishka.checkName();} catch (NoNameException noName) {System.err.println("ERROR"+noName.getMessage());}
         BallFlyMan NN= new BallFlyMan("Кто-то", 9);
+        try {NN.checkName();} catch (NoNameException noName) {System.err.println("ERROR"+noName.getMessage());}
         Train train = new Train("поезд");
         Ball ball= new Ball(1);
         Wind wind= new Wind("воздух");
@@ -78,14 +82,18 @@ public class Main {
         Korotishka.zenki();
         Korotishka.attention(false);
         problem.fullState("подобные ");
-        try {
-            Fight.Borba(Korotishka, NN, ball, Kozlik); //checked
+        if (NN.power>Korotishka.dodgeSkill) {
+            Fight.Borba(Korotishka, NN, ball, Kozlik);
+        } else {
+               throw  new DodgeException("КОРОТЫШКА УВЕРНУЛСЯ, ВСЕЛЕННАЯ ТАКОЕ НЕ ПЕРЕЖИЛА");
+        }
+       /* try {
 
         } catch (DodgeException e) {
             System.out.println(e.getMessage());
             System.out.println("Проверяем Баланс \r\n"+ "  Ловкость коротышки="+ Korotishka.getDodgeSkill()+"\r\n"+"Мощность кидающего мяч коротышки "+ NN.getPower());
             return;
-        }
+        } */
         Korotishka.name="Бедняга";
         Korotishka.see();
         Korotishka.run("дом", "поскорей");

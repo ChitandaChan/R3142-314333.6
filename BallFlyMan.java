@@ -3,13 +3,17 @@ import java.util.Objects;
 public class BallFlyMan implements ShotMan {
     private String name;
     public int count;
-    private int power;
+    public int power;
     public BallFlyMan(String name, int power) {
         this.name=name;
         this.power=power;
     }
     public int getPower() {return power;}
-
+    public void checkName() throws  NoNameException {
+        if (getName()=="") {
+            throw new NoNameException(" нет имени");
+        }
+    }
     public void setPower(int power) {
         this.power=power;
     }
